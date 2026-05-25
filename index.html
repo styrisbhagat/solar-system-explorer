@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Styris Bhagat — Solar System Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true">
+    <div class="stars stars-small"></div>
+    <div class="stars stars-medium"></div>
+    <div class="stars stars-large"></div>
+    <span class="shooting-star star-one"></span>
+    <span class="shooting-star star-two"></span>
+    <span class="shooting-star star-three"></span>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#home">Styris Bhagat</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#solar-system">Planets</a>
+      <a href="#learn">Learn</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark and light mode">☾</button>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">Class 9 Space Science Project</p>
+        <h1>Solar System Explorer</h1>
+        <p class="byline">by Styris Bhagat</p>
+        <p class="hero-subtitle">
+          <span id="typingText"></span>
+          <span class="typing-cursor">|</span>
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#solar-system">Start Exploring</a>
+          <button class="secondary-btn" id="musicToggle" type="button">Space Music: Off</button>
+        </div>
+      </div>
+
+      <div class="astronaut-wrap" aria-hidden="true">
+        <div class="astronaut">
+          <div class="helmet"></div>
+          <div class="visor"></div>
+          <div class="pack"></div>
+          <div class="body"></div>
+          <div class="arm arm-left"></div>
+          <div class="arm arm-right"></div>
+          <div class="leg leg-left"></div>
+          <div class="leg leg-right"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section solar-section" id="solar-system">
+      <div class="section-heading">
+        <p class="eyebrow">Interactive Model</p>
+        <h2>Click Any Planet</h2>
+        <p>Watch each planet revolve around the Sun, then open its card to learn important Class 9 facts.</p>
+      </div>
+
+      <div class="search-panel glass">
+        <label for="planetSearch">Find a planet</label>
+        <input id="planetSearch" type="search" placeholder="Search Mercury, Earth, Neptune...">
+      </div>
+
+      <div class="solar-system" aria-label="Animated solar system">
+        <button class="sun" type="button" aria-label="The Sun">
+          <span>Sun</span>
+        </button>
+      </div>
+      <p class="hint">Tip: hover over planets to pause and click for details.</p>
+    </section>
+
+    <section class="section facts-band" id="facts">
+      <div class="section-heading">
+        <p class="eyebrow">Did You Know?</p>
+        <h2>Fast Space Facts</h2>
+      </div>
+      <div class="facts-grid" id="factsGrid"></div>
+    </section>
+
+    <section class="section learn-section" id="learn">
+      <div class="section-heading">
+        <p class="eyebrow">Science Basics</p>
+        <h2>Key Ideas Made Simple</h2>
+      </div>
+      <div class="concept-grid">
+        <article class="glass concept-card">
+          <h3>Rotation</h3>
+          <p>Rotation means a planet spins on its own axis. One complete spin creates one day on that planet.</p>
+        </article>
+        <article class="glass concept-card">
+          <h3>Revolution</h3>
+          <p>Revolution means a planet travels around the Sun. One complete trip around the Sun creates one year.</p>
+        </article>
+        <article class="glass concept-card">
+          <h3>Gravity</h3>
+          <p>Gravity is the force that pulls objects toward each other. The Sun's gravity keeps planets in orbit.</p>
+        </article>
+        <article class="glass concept-card">
+          <h3>Asteroid Belt</h3>
+          <p>The asteroid belt is a region between Mars and Jupiter filled with rocky objects called asteroids.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section table-section">
+      <div class="section-heading">
+        <p class="eyebrow">Compare</p>
+        <h2>Planet Comparison Table</h2>
+      </div>
+      <div class="table-wrap glass">
+        <table>
+          <thead>
+            <tr>
+              <th>Planet</th>
+              <th>Distance from Sun</th>
+              <th>Moons</th>
+              <th>Temperature</th>
+            </tr>
+          </thead>
+          <tbody id="planetTable"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section quiz-section" id="quiz">
+      <div class="section-heading">
+        <p class="eyebrow">Challenge Time</p>
+        <h2>Solar System Quiz</h2>
+        <p>Answer five quick questions and test your planet knowledge.</p>
+      </div>
+      <div class="quiz-card glass">
+        <div class="quiz-top">
+          <span id="questionCount">Question 1 of 5</span>
+          <span id="scoreText">Score: 0</span>
+        </div>
+        <h3 id="questionText"></h3>
+        <div class="options" id="options"></div>
+        <p class="feedback" id="feedback" aria-live="polite"></p>
+        <button class="primary-btn next-btn" id="nextQuestion" type="button">Next Question</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="planetModal" aria-hidden="true" role="dialog" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <article class="modal-card glass">
+      <button class="close-btn" type="button" aria-label="Close planet information" data-close-modal>×</button>
+      <div class="modal-planet-icon" id="modalIcon"></div>
+      <div>
+        <p class="eyebrow">Planet Profile</p>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+      </div>
+      <div class="modal-stats">
+        <div><strong>Distance</strong><span id="modalDistance"></span></div>
+        <div><strong>Moons</strong><span id="modalMoons"></span></div>
+        <div><strong>Temperature</strong><span id="modalTemperature"></span></div>
+      </div>
+      <ul id="modalFacts"></ul>
+    </article>
+  </div>
+
+    <footer>
+    <p>Made by <span id="studentName">Styris Bhagat</span></p>
+    <p>St Thomas School Govindpur Mahagama Gooda Jharkhand • Solar System Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

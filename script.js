@@ -4,7 +4,7 @@ const planets = [
     distance: "57.9 million km",
     moons: "0",
     temperature: "-173°C to 427°C",
-    size: 14,
+    size: 18,
     orbit: 18,
     speed: 9,
     color: "radial-gradient(circle at 35% 30%, #f3d7a2, #8f8071)",
@@ -16,7 +16,7 @@ const planets = [
     distance: "108.2 million km",
     moons: "0",
     temperature: "About 465°C",
-    size: 20,
+    size: 22,
     orbit: 26,
     speed: 13,
     color: "radial-gradient(circle at 35% 30%, #ffe2a3, #d18a34)",
@@ -28,7 +28,7 @@ const planets = [
     distance: "149.6 million km",
     moons: "1",
     temperature: "Average 15°C",
-    size: 22,
+    size: 23,
     orbit: 35,
     speed: 17,
     color: "radial-gradient(circle at 30% 25%, #77e4ff, #1f70ff 50%, #36b36b 70%)",
@@ -40,7 +40,7 @@ const planets = [
     distance: "227.9 million km",
     moons: "2",
     temperature: "Average -63°C",
-    size: 18,
+    size: 21,
     orbit: 44,
     speed: 21,
     color: "radial-gradient(circle at 35% 30%, #ffb08a, #c7442e)",
@@ -52,7 +52,7 @@ const planets = [
     distance: "778.5 million km",
     moons: "95+",
     temperature: "Cloud tops about -110°C",
-    size: 42,
+    size: 34,
     orbit: 56,
     speed: 28,
     color: "linear-gradient(145deg, #fff0c2, #d99d5f 35%, #8c5a3c 55%, #f3d3a2)",
@@ -64,7 +64,7 @@ const planets = [
     distance: "1.43 billion km",
     moons: "146+",
     temperature: "About -140°C",
-    size: 38,
+    size: 32,
     orbit: 68,
     speed: 34,
     color: "radial-gradient(circle at 35% 30%, #fff0ba, #d3a656)",
@@ -76,7 +76,7 @@ const planets = [
     distance: "2.87 billion km",
     moons: "27",
     temperature: "About -195°C",
-    size: 30,
+    size: 28,
     orbit: 80,
     speed: 40,
     color: "radial-gradient(circle at 35% 30%, #b7fff5, #48bcd4)",
@@ -88,7 +88,7 @@ const planets = [
     distance: "4.50 billion km",
     moons: "14",
     temperature: "About -200°C",
-    size: 30,
+    size: 28,
     orbit: 91,
     speed: 47,
     color: "radial-gradient(circle at 35% 30%, #8ec5ff, #274bff)",
@@ -173,11 +173,18 @@ function createSolarSystem() {
     button.style.background = planet.color;
     button.style.boxShadow = `0 0 ${planet.size}px rgba(88, 215, 255, 0.45)`;
 
+    const label = document.createElement("span");
+    label.className = "planet-label";
+    label.textContent = planet.name;
+
     if (planet.name === "Saturn") {
       button.style.boxShadow = "0 0 24px rgba(255, 216, 150, 0.65), 0 0 0 8px rgba(237, 205, 131, 0.35)";
     }
 
     button.addEventListener("click", () => openPlanetModal(planet));
+    button.addEventListener("pointerenter", () => orbit.classList.add("paused"));
+    button.addEventListener("pointerleave", () => orbit.classList.remove("paused"));
+    button.appendChild(label);
     orbit.appendChild(button);
     solarSystem.appendChild(orbit);
   });
